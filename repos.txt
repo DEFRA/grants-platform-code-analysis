@@ -1,0 +1,56 @@
+# Manifest of DEFRA service repos managed by scripts/clone-all.sh and update-all.sh.
+#
+# Format:
+#   - Blank lines and lines starting with '#' are ignored.
+#   - '# org=<name>' sets the default GitHub org for bare repo names below.
+#   - A bare name (e.g. grants-ui) clones git@github.com:<org>/<name>.git
+#   - A full clone URL (e.g. git@github.com:OTHER/thing.git) is used verbatim;
+#     its directory name is the URL basename minus '.git'.
+#
+# To add a repo: add its name here, then run ./scripts/clone-all.sh
+# To stop managing a repo: remove/comment its line (the checkout is left on disk).
+
+# org=DEFRA
+
+cdp-app-config
+farming-grants-agreements-api
+farming-grants-agreements-pdf
+farming-grants-agreements-ui
+farming-grants-docs
+fg-cw-backend
+fg-cw-frontend
+fg-gas-backend
+fg-gas-frontend
+fg-grants-core
+fg-grants-platform-admin
+fg-gss-pmf
+grant-config-woodland
+grants-config-bootstrap
+grants-config-broker
+grants-config-browser
+grants-config-example-grants
+grants-config-farm-payments
+grants-config-feature-controls
+grants-config-grasslands
+grants-config-land-grants
+grants-config-utils
+grants-config-water-management
+grants-config-woodland
+grants-payment-service
+grants-platform-e2e-tests
+grants-platform-metrics
+grants-reporting-collector
+grants-reporting-processor
+grants-reporting-publisher
+grants-ui
+grants-ui-acceptance-tests
+grants-ui-backend
+grants-ui-compatibility-tests
+grants-ui-dal-stub
+grants-ui-gas-stub
+grants-ui-grasslands-tests
+grants-ui-smoke-tests
+grants-ui-woodland-tests
+land-grants-api
+land-grants-api-tests
+sfi-reform-service-e2e-tests

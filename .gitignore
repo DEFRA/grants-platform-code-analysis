@@ -1,0 +1,15 @@
+# Ignore everything by default — this includes all cloned service repos
+# (grants-ui/, land-grants-api/, fg-*/, ...), binaries, node_modules, junk.
+/*
+
+# ... then re-include only the workspace tooling + analysis we track here.
+!/.gitignore
+!/README.md
+!/CLAUDE.md
+!/repos.txt
+!/scripts/
+!/skills/
+!/working-area/
+
+# Never track macOS cruft, even inside the allowlisted dirs.
+.DS_Store
