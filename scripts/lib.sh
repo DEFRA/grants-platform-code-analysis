@@ -26,7 +26,9 @@ is_tty() { [ -t 0 ] && [ -t 1 ]; }
 # --- manifest parsing --------------------------------------------------------
 # Emit one "name<TAB>clone_url" line per repo in repos.txt.
 # Honours a leading '# org=<name>' directive for bare names.
+# Pass "true" as the first argument to use HTTPS instead of SSH for bare names.
 manifest_repos() {
+  local use_https="${1:-false}"
   if [ ! -f "$MANIFEST" ]; then
     err "Manifest not found: $MANIFEST"
     return 1
@@ -48,7 +50,11 @@ manifest_repos() {
       name="$(basename "$line")"; name="${name%.git}"
     else
       name="$line"
-      url="git@github.com:${org}/${name}.git"
+      if [ "$use_https" = "true" ]; then
+        url="https://github.com/${org}/${name}.git"
+      else
+        url="git@github.com:${org}/${name}.git"
+      fi
     fi
     printf '%s\t%s\n' "$name" "$url"
   done < "$MANIFEST"
