@@ -5,14 +5,16 @@
 # Idempotent bootstrap: clones any missing repo, leaves existing ones untouched.
 # Use update-all.sh to bring existing checkouts up to date.
 #
-# Usage: scripts/clone-all.sh [--dry-run]
+# Usage: scripts/clone-all.sh [--http] [--dry-run]
 set -euo pipefail
 
 source "$(dirname "${BASH_SOURCE[0]}")/lib.sh"
 
 DRY_RUN=false
+USE_HTTP=false
 for arg in "$@"; do
   case "$arg" in
+    --http)    USE_HTTP=true ;;
     --dry-run) DRY_RUN=true ;;
     -h|--help) grep '^#' "$0" | sed 's/^# \{0,1\}//'; exit 0 ;;
     *) err "Unknown argument: $arg"; exit 2 ;;
@@ -49,7 +51,7 @@ while IFS=$'\t' read -r name url; do
     err "  FAILED   $name  ($url)"
     failed=$((failed + 1)); failures+=("$name")
   fi
-done < <(manifest_repos)
+done < <(manifest_repos "$USE_HTTP")
 
 echo
 if $DRY_RUN; then
